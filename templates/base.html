@@ -18,6 +18,23 @@
         </a>
         <!-- Links -->
         <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "logout" %}">Logout</a>
+                </li>
+                {#            Todo: add navbar item for upload snippet once implemented#}
+                {#            <li class="nav-item">#}
+                {#                <a class="nav-link" href="{% url "snippets:create" %}">Upload Snippet</a>#}
+                {#            </li>#}
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "login" %}">Login</a>
+                </li>
+                {#            Todo: add navbar item for signup once implemented#}
+                {#            <li class="nav-item">#}
+                {#                <a class="nav-link" href="{% url "signup" %}">Signup</a>#}
+                {#            </li>#}
+            {% endif %}
         </ul>
     </nav>
     {% block content %}{% endblock content %}

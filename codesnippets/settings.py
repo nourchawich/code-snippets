@@ -59,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'codesnippets.urls'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 TEMPLATES = [
     {
