@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Snippets list -->
+    {% for snippet in snippets %}
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <!-- Title -->
+            <h3><a href="{% url "snippets:detail" snippet.id %}">#{{ snippet.id }} - {{ snippet.title }}</a></h3>
+
+            <!-- Code -->
+            <div class="p-2 border">
+                <pre class="pre-scrollable"><code>{{ snippet.code }}</code></pre>
+            </div>
+
+            <!-- Tags -->
+            <div class="py-1">
+                {% for tag in snippet.tags %}
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url "snippets:by-tag" tag %}">{{ tag }}</a>
+                {% endfor %}
+            </div>
+
+            <!-- User and date -->
+            <div class="my-1">
+                <span>{{ snippet.user.username }} - {{ snippet.created_at }}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
