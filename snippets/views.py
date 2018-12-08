@@ -6,6 +6,7 @@ from .models import Snippet
 class SnippetList(ListView):
     template_name = 'snippets/snippet_list.html'
     context_object_name = 'snippets'
+    paginate_by = 25  # This allows passing ?page=x to the url
 
     def get_queryset(self):
         qs = Snippet.objects.all()
