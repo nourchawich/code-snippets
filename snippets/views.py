@@ -1,6 +1,12 @@
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from .models import Snippet
+
+
+class SnippetDetail(DetailView):
+    template_name = 'snippets/snippet_detail.html'
+    model = Snippet
+    context_object_name = 'snippet'
 
 
 class SnippetList(ListView):
