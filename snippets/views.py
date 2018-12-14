@@ -1,6 +1,24 @@
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from .models import Snippet
+
+
+class SnippetCreate(CreateView):
+    template_name = 'snippets/snippet_form.html'
+    model = Snippet
+    fields = ['title', 'code', 'tags', 'published']
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class SnippetUpdate(UpdateView):
+    template_name = 'snippets/snippet_form.html'
+    model = Snippet
+    fields = ['title', 'code', 'tags', 'published']
 
 
 class SnippetDetail(DetailView):

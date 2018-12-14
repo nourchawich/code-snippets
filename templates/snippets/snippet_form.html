@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        {% if snippet %}
+            <input type="submit" class="btn btn-success" value="Save">
+            <a class="btn btn-secondary" href="{% url "snippets:detail"  snippet.id %}">Cancel</a>
+        {% else %}
+            <input type="submit" value="Create">
+        {% endif %}
+    </form>
+{% endblock %}
