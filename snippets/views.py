@@ -1,4 +1,5 @@
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 
 from .models import Snippet
 
@@ -19,6 +20,12 @@ class SnippetUpdate(UpdateView):
     template_name = 'snippets/snippet_form.html'
     model = Snippet
     fields = ['title', 'code', 'tags', 'published']
+
+
+class SnippetDelete(DeleteView):
+    template_name = 'snippets/snippet_delete.html'
+    model = Snippet
+    success_url = reverse_lazy('snippets:list')
 
 
 class SnippetDetail(DetailView):
