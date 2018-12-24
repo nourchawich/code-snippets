@@ -22,3 +22,12 @@ class Snippet(models.Model):
     def get_absolute_url(self):
         """Returns snippet url to be used as redirect url for UpdateView"""
         return reverse('snippets:detail', kwargs={'pk': self.pk})
+
+
+class Tag(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, null=True)
+    name = models.CharField(max_length=TAG_MAX_LEN, db_index=True)
+    num_posts = models.IntegerField(default=0, db_index=True)
+
+    def __str__(self):
+        return f'{self.id}: "{self.name}" added by {self.user}'

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 from pathlib import Path
+import django_heroku
 import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -130,3 +131,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticroot'
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals(), databases=not DEBUG)
