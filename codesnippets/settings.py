@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'codesnippets.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db()  # Set from `DATABASE_URL` env var
+    'default': env.db(default='postgres://postgres:postgres@localhost:5432/snippets')  # Set from `DATABASE_URL` env var
 }
 
 
